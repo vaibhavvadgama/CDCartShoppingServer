@@ -20,6 +20,10 @@ public class ProcessedOrdersBean {
     boolean isActive;
     String createdDate;
     String modifiedDate;
+    
+    public ProcessedOrdersBean() {
+        
+    }
 
     public ProcessedOrdersBean(int orderId, int userId, String shippingType, int shippingAddressId, int billingAddressId, String orderDate, String orderStatus, boolean isActive, String createdDate, String modifiedDate) {
         this.orderId = orderId;

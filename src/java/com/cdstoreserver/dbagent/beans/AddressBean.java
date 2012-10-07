@@ -23,6 +23,10 @@ public class AddressBean {
     boolean isActive;
     String createdDate;
     String modifiedDate;
+    
+    public AddressBean()
+    {
+    }
 
     public AddressBean(int addressId, String addressType, int userId, String streetNo, String streetName, String unitNo, String city, String state, String zip, String phone, boolean isActive, String createdDate, String modifiedDate) {
         this.addressId = addressId;

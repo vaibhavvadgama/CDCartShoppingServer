@@ -19,6 +19,10 @@ public class UserBean {
     boolean isActive;
     String createdDate;
     String modifiedDate;
+    
+    public UserBean() {
+        
+    }
 
     public UserBean(int userId, String firstName, String lastName, String email, String password, String role, boolean isActive, String createdDate, String modifiedDate) {
         this.userId = userId;

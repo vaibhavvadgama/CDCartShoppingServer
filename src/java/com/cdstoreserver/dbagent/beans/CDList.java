@@ -12,12 +12,13 @@ import java.util.ArrayList;
  */
 public class CDList {
     
-    public String error = "";
+    public String status = "";
+    public String errormessage = "";
     
-    public ArrayList<CdBean> cdList;
+    public ArrayList<CdBean> cd;
 
     public CDList() {
-        cdList = new ArrayList<CdBean>();
+        cd = new ArrayList<CdBean>();
     }
     
 }

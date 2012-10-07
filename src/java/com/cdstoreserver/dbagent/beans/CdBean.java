@@ -20,6 +20,10 @@ public class CdBean {
     boolean isActive;
     String createdDate;
     String modifiedDate;
+    
+    public CdBean() {
+        
+    }
 
     public CdBean(int cdId, String cdTitle, double cdPrice, int categoryId, String cdImage, String publishDate, double taxPer, boolean isActive, String createdDate, String modifiedDate) {
         this.cdId = cdId;
