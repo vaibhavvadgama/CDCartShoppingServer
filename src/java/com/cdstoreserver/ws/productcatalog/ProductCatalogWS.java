@@ -22,15 +22,6 @@ public class ProductCatalogWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "test")
-    public String test() {
-        //TODO write your implementation code here:
-        return null;
-    }
-
-    /**
-     * Web service operation
-     */
     @WebMethod(operationName = "getProductList")
     public CDList getProductList(@WebParam(name = "categoryId") Integer categoryId) {
         //TODO write your implementation code here:
