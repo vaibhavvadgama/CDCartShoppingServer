@@ -4,9 +4,11 @@
  */
 package com.cdstoreserver.dbagent.dao;
 
+import com.cdstoreserver.SystemLogger;
 import com.cdstoreserver.dbagent.DbAgentUtil;
 import com.cdstoreserver.dbagent.ShopDbAgent;
 import com.cdstoreserver.dbagent.beans.CdBean;
+import com.cdstoreserver.dbagent.dao.keys.CdTableKeys;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.util.ArrayList;
@@ -19,19 +21,6 @@ public class CdDao {
 
     ShopDbAgent objDb = null;
     DbAgentUtil objProp = null;
-    
-//    class CdDaoConfig {
-//        public static String key_cdid = "";
-//        public static String key_title;
-//        public static String key_price;
-//        public static String key_categoryId;
-//        public static String key_image;
-//        public static String key_publishedDate;
-//        public static String key_taxPer;
-//        public static String key_isActive;
-//        public static String key_createdDate;
-//        public static String key_modifiedDate;
-//    }
 
     public CdDao() {
         objDb = new ShopDbAgent();
@@ -40,34 +29,65 @@ public class CdDao {
 
     public ArrayList<CdBean> getProductList(int intCategoryId) {
         ArrayList<CdBean> itemList = null;
-        String intCatId = "" + intCategoryId;
-        itemList = iterateResultSet(objDb.getQueryResult(objProp.getProperty("query1"), new String[]{intCatId}));
+        String strCategoryId = ""+intCategoryId;
+        String[] values = new String[]{strCategoryId};
+        ResultSet rs = objDb.getQueryResult("q2.1", values);
+        SystemLogger.out("RS : " + rs);
+        itemList = iterateResultSet(rs);        
+        return itemList;
+    }
+    
+    public ArrayList<CdBean> getProductInfo(int intProductId){
+        
+        ArrayList<CdBean> itemList = null;
+        String strProductId = ""+intProductId;
+        String[] values = new String[]{strProductId};
+        ResultSet rs = objDb.getQueryResult("q2.2", values);
+        SystemLogger.out("RS : " + rs);
+        itemList = iterateResultSet(rs);
         return itemList;
     }
 
     public ArrayList<CdBean> iterateResultSet(ResultSet rs) {
         ArrayList<CdBean> cdList = new ArrayList<CdBean>();
-
+        
         try {
-            ResultSetMetaData md = rs.getMetaData();
-            int columns = md.getColumnCount();
             
-            String [] columnNames = {
-                objProp.getProperty("key_cdid"),
-                objProp.getProperty("key_cdtitle"),
-                objProp.getProperty("key_cdprice"),
-                objProp.getProperty("key_categoryid"),
-                objProp.getProperty("key_cdimage"),
-                objProp.getProperty("key_cdpublisheddate"),
-                objProp.getProperty("key_cdtaxper"),
-                objProp.getProperty("key_cdisactive"),
-                objProp.getProperty("key_cdcreateddate"),
-                objProp.getProperty("key_cdmodifieddate")
-            };
+            String[] columnNames = CdTableKeys.getColumnKeys();
+            ResultSetMetaData md = rs.getMetaData();
             while (rs.next()) {
-//                for() {
-//                    
-//                }
+                CdBean cdBean = new CdBean();
+                for (String col : columnNames) {
+                    try {
+                        if (col.equals(CdTableKeys.key_cd_id)) {
+                            cdBean.setCdId(
+                                    Integer.parseInt(rs.getString(CdTableKeys.key_cd_id)));
+                        } else if (col.equals(CdTableKeys.key_cd_title)) {
+                            cdBean.setCdTitle(
+                                    rs.getString(CdTableKeys.key_cd_title));
+                        } else if (col.equals(CdTableKeys.key_cd_price)) {
+                            cdBean.setCdPrice(
+                                    Double.parseDouble(rs.getString(CdTableKeys.key_cd_price)));
+                        } else if (col.equals(CdTableKeys.key_category_id)) {
+                            cdBean.setCategoryId(
+                                    Integer.parseInt(rs.getString(CdTableKeys.key_category_id)));
+                        } else if (col.equals(CdTableKeys.key_cd_image)) {
+                            cdBean.setCdImage(
+                                    rs.getString(CdTableKeys.key_cd_image));
+                        } else if (col.equals(CdTableKeys.key_cd_publisheddate)) {
+                            cdBean.setPublishDate(
+                                    rs.getString(CdTableKeys.key_cd_publisheddate));
+                        } else if (col.equals(CdTableKeys.key_cd_taxper)) {
+                            cdBean.setTaxPer(
+                                    Double.parseDouble(rs.getString(CdTableKeys.key_cd_taxper)));
+                        } else {
+                            System.out.println("Error in fetching Attribute");
+                        }
+                    } catch (Exception resultSetException) {
+                        resultSetException.printStackTrace();
+                    }
+                }
+                cdList.add(cdBean);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
