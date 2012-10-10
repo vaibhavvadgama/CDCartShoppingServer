@@ -1,7 +1,7 @@
 <%-- 
-    Document   : index
-    Created on : Sep 28, 2012, 9:17:04 PM
-    Author     : Vaibhav
+    Document   : home
+    Created on : Oct 10, 2012, 3:08:21 PM
+    Author     : System Administrator
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        Test HTML File
+        <h1>Home Page</h1>
     </body>
 </html>
