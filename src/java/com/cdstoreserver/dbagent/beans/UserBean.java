@@ -16,6 +16,10 @@ public class UserBean {
     String email;
     String password;
     String role;
+    String cardtype;
+    String cardnumber;
+    int cvv;
+    String expdate;
     boolean isActive;
     String createdDate;
     String modifiedDate;
@@ -24,13 +28,17 @@ public class UserBean {
         
     }
 
-    public UserBean(int userId, String firstName, String lastName, String email, String password, String role, boolean isActive, String createdDate, String modifiedDate) {
+    public UserBean(int userId, String firstName, String lastName, String email, String password, String role,String cardtype,String cardnumber,int cvv,String expdate,boolean isActive, String createdDate, String modifiedDate) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.cardnumber = cardnumber;
+        this.cardtype = cardtype;
+        this.cvv = cvv;
+        this.expdate = expdate;
         this.isActive = isActive;
         this.createdDate = createdDate;
         this.modifiedDate = modifiedDate;
@@ -83,6 +91,41 @@ public class UserBean {
     public void setRole(String role) {
         this.role = role;
     }
+    
+    public String getCardNumber() {
+        return cardnumber;
+    }
+
+    public void setCardNumber(String cardnumber) {
+        this.cardnumber = cardnumber;
+    }
+    
+    public String getCardType() {
+        return cardtype;
+    }
+
+    public void setCardType(String cardtype) {
+        this.cardtype = cardtype;
+    }
+    
+    
+    public int getCvv() {
+        return cvv;
+    }
+
+    public void setCvv(int cvv) {
+        this.cvv = cvv;
+    }
+    
+    public String getExpDate() {
+        return expdate;
+    }
+
+    public void setExpDate(String expdate) {
+        this.expdate = expdate;
+    }
+    
+    
 
     public boolean isIsActive() {
         return isActive;

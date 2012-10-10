@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -63,20 +64,28 @@ public class ShopDbAgent {
      */
     public int executeSQL(String queryId, String[] parameters) {
         int intRows = 0;
+        ResultSet rs = null;
         String strSql = null;
         strSql = objProp.getQuery(queryId);
         SystemLogger.info(" SQL to be executed : " + strSql);
+        SystemLogger.info("Parameters:"+parameters[0]+parameters[1]);
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement(strSql);
-            if (parameters != null) {
+                    .prepareStatement(strSql,Statement.RETURN_GENERATED_KEYS);
+            if (parameters!= null) {
 
                 for (int i = 0; i < parameters.length; i++) {
                     preparedStatement.setString((i + 1), parameters[i]);
 
                 }
             }
-            intRows = preparedStatement.executeUpdate();
+                intRows = preparedStatement.executeUpdate();
+                rs = preparedStatement.getGeneratedKeys(); 
+                if ( rs != null && rs.next() ) 
+                { 
+                    intRows = rs.getInt(1); 
+                }           
+            
         } catch (SQLException e) {
             System.out.println("Error invalid SQL syntax. " + e.getMessage());
             try {

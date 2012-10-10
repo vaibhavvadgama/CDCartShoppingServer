@@ -16,10 +16,11 @@ public class ProcessedOrdersBean {
     int shippingAddressId;
     int billingAddressId;
     String orderDate;
+    public String status = "";
+    public String errormessage = "";
     String orderStatus;
-    boolean isActive;
     String createdDate;
-    String modifiedDate;
+    
     
     public ProcessedOrdersBean() {
         
@@ -32,10 +33,9 @@ public class ProcessedOrdersBean {
         this.shippingAddressId = shippingAddressId;
         this.billingAddressId = billingAddressId;
         this.orderDate = orderDate;
-        this.orderStatus = orderStatus;
-        this.isActive = isActive;
+        this.orderStatus = orderStatus;        
         this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        
     }
 
     public int getOrderId() {
@@ -92,15 +92,7 @@ public class ProcessedOrdersBean {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
-    }
-
-    public boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
-    }
+    }   
 
     public String getCreatedDate() {
         return createdDate;
@@ -110,12 +102,5 @@ public class ProcessedOrdersBean {
         this.createdDate = createdDate;
     }
 
-    public String getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(String modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
-    
+        
 }

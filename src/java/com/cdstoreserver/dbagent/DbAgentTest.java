@@ -21,15 +21,15 @@ public class DbAgentTest {
         String driver= test.getProperty("driver");
         System.out.println(driver);*/
         //To test insert,update or delete
-        /*
+        
         int rows;
         ShopDbAgent test2 = new ShopDbAgent();
-        String[] values = new String[]{"Rock","It is a rock music","1","2012-09-21 02:00:00","2012-09-21 02:00:00"};
-        rows= test2.executeSQL("query2",values);
-        System.out.println("Rows"+rows);*/
+        String[] values = new String[]{"processed","1"};
+        rows= test2.executeSQL("q3.2",values);
+        System.out.println("Rows"+rows);
         
-        ShopDbAgent test2 = new ShopDbAgent();
-        String[] values = new String[]{};
+        /*ShopDbAgent test2 = new ShopDbAgent();
+        String[] values = new String[]{};*/
 //        List<HashMap<String,Object>> values2 = test2.getQueryResult("query1", values);
 //        
 //        for (HashMap<String, Object> map : values2){
