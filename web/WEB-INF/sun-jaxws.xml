@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <endpoints version="2.0" xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
   <endpoint implementation="com.cdstoreserver.ws.productcatalog.ProductCatalogWS" name="ProductCatalogWS" url-pattern="/ProductCatalogWS"/>
+  <endpoint implementation="com.cdstoreserver.ws.orderprocess.OrderProcessWS" name="OrderProcessWS" url-pattern="/OrderProcessWS"/>
+  <endpoint implementation="com.cdstoreserver.ws.accountprocessing.AccountProcessingWS" name="AccountProcessingWS" url-pattern="/AccountProcessingWS"/>
 </endpoints>
