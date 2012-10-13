@@ -4,6 +4,12 @@
     <service name="ProductCatalogWS">
       <implementation-class>com.cdstoreserver.ws.productcatalog.ProductCatalogWS</implementation-class>
     </service>
+    <service name="OrderProcessWS">
+      <implementation-class>com.cdstoreserver.ws.orderprocess.OrderProcessWS</implementation-class>
+    </service>
+    <service name="AccountProcessingWS">
+      <implementation-class>com.cdstoreserver.ws.accountprocessing.AccountProcessingWS</implementation-class>
+    </service>
   </services>
   <clients/>
   <jsr109>false</jsr109>
