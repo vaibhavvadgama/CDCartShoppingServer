@@ -5,6 +5,7 @@
 package com.cdstoreserver.ws.productcatalog;
 
 import com.cdstoreserver.dbagent.beans.CDList;
+import com.cdstoreserver.dbagent.beans.CdBean;
 import com.cdstoreserver.dbagent.beans.CategoryList;
 import com.cdstoreserver.dbagent.dao.CategoryDao;
 import com.cdstoreserver.dbagent.dao.CdDao;
@@ -48,15 +49,15 @@ public class ProductCatalogWS {
      * Web service operation
      */
     @WebMethod(operationName = "getProductInfo")
-    public CDList getProductInfo(@WebParam(name = "productId") Integer productId) {
+    public CdBean getProductInfo(@WebParam(name = "productId") Integer productId) {
         //TODO write your implementation code here:
-        CDList responseObj = new CDList();
+        CdBean responseObj = new CdBean();
         
         CdDao dao = new CdDao();
         
-        responseObj.cd =  dao.getProductInfo(productId);
+        responseObj=  dao.getProductInfo(productId);
         
-        if(responseObj.cd.size() == 0) {
+        if(responseObj==null) {
             responseObj.status = "error";
             responseObj.errormessage = "No product data found!";
         } else {

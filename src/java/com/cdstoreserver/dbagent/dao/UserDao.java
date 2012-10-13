@@ -28,9 +28,9 @@ public class UserDao {
     }
 
     
-    public ArrayList<UserBean> getUserInfo(String strUserName,String strPassword){        
+    public UserBean getUserInfo(String strUserName,String strPassword){        
         
-        ArrayList<UserBean> userData = null;        
+        UserBean userData = null;        
         String[] values = new String[]{strUserName,strPassword};
         ResultSet rs = objDb.getQueryResult("q5.2", values);
         SystemLogger.out("RS : " + rs);
@@ -38,31 +38,30 @@ public class UserDao {
         return userData;
     }
     
-    public ArrayList<UserBean> addUser(UserBean user){
+    public UserBean addUser(UserBean user){
         int insertId;
-        ArrayList<UserBean> userData = new ArrayList<UserBean>();
+        
         UserBean returnUser = new UserBean();
         String[] values = new String[]{user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getCardType(),user.getCardNumber(),""+user.getCvv(),user.getExpDate()};
         insertId = objDb.executeSQL("q5.1",values);
         if(insertId!=0){
-            returnUser.setUserId(insertId);
-            userData.add(returnUser);
+            returnUser.setUserId(insertId);          
             
         } else {
-            userData = null;
+            returnUser = null;
         } 
-        return userData;
+        return returnUser;
     }
 
-    public ArrayList<UserBean> iterateResultSet(ResultSet rs) {
-        ArrayList<UserBean> userList = new ArrayList<UserBean>();
+    public UserBean iterateResultSet(ResultSet rs) {
+        UserBean userBean = new UserBean();
         
         try {
             
             String[] columnNames = UserTableKeys.getColumnKeys();
             ResultSetMetaData md = rs.getMetaData();
             while (rs.next()) {
-                UserBean userBean = new UserBean();
+                
                 for (String col : columnNames) {
                     try {
                         if (col.equals(UserTableKeys.key_user_id)) {
@@ -83,6 +82,16 @@ public class UserDao {
                         } else if (col.equals(UserTableKeys.key_isactive)) {
                             userBean.setIsActive(
                                     Boolean.parseBoolean(rs.getString(UserTableKeys.key_isactive)));
+                        } else if (col.equals(UserTableKeys.key_user_cardtype)) {
+                            userBean.setCardType(
+                                    rs.getString(UserTableKeys.key_user_cardtype));
+                        } else if (col.equals(UserTableKeys.key_user_cardnumber)) {
+                            userBean.setCardNumber(rs.getString(UserTableKeys.key_user_cardnumber));
+                        } else if (col.equals(UserTableKeys.key_user_cardcvv)) {
+                            userBean.setCvv(
+                                    Integer.parseInt(rs.getString(UserTableKeys.key_user_cardcvv)));
+                        } else if (col.equals(UserTableKeys.key_user_cardexpdate)) {
+                            userBean.setExpDate(rs.getString(UserTableKeys.key_user_cardexpdate));
                         } else {
                             System.out.println("Error in fetching Attribute");
                         }
@@ -90,12 +99,12 @@ public class UserDao {
                         resultSetException.printStackTrace();
                     }
                 }
-                userList.add(userBean);
+                
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return userList;
+        return userBean;
     }
     
 }

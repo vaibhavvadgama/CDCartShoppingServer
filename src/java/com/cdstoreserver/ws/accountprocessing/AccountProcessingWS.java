@@ -25,16 +25,16 @@ public class AccountProcessingWS {
      * Web service operation
      */
     @WebMethod(operationName = "getUserInfo")
-    public UserList getUserInfo(@WebParam(name = "userName") String userName,@WebParam(name = "password") String password) {
+    public UserBean getUserInfo(@WebParam(name = "userName") String userName,@WebParam(name = "password") String password) {
         //TODO write your implementation code here:
-        UserList responseObj = new UserList();
+        UserBean responseObj = new UserBean();
         
         UserDao dao = new UserDao();
         
-        responseObj.user =  dao.getUserInfo(userName, password);
+        responseObj =  dao.getUserInfo(userName, password);
         
-        if(responseObj.user.size() == 0) {
-            responseObj.status = "error";
+        if(responseObj==null) {
+            responseObj.status= "error";
             responseObj.errormessage = "No user data found!";
         } else {
             responseObj.status = "success";
@@ -92,12 +92,12 @@ public class AccountProcessingWS {
      * Web service operation
      */
     @WebMethod(operationName = "addUser")
-    public UserList addUser(@WebParam(name = "user") UserBean user) {
+    public UserBean addUser(@WebParam(name = "user") UserBean user) {
         //TODO write your implementation code here:
-        UserList responseObj = new UserList();        
+        UserBean responseObj = new UserBean();        
         UserDao dao = new UserDao();        
-        responseObj.user =  dao.addUser(user);
-        if(responseObj.user==null){
+        responseObj=  dao.addUser(user);
+        if(responseObj==null){
             responseObj.status = "error";
             responseObj.errormessage = "User already exists!";
         } else {

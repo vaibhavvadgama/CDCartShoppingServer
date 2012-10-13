@@ -37,14 +37,14 @@ public class CdDao {
         return itemList;
     }
     
-    public ArrayList<CdBean> getProductInfo(int intProductId){
+    public CdBean getProductInfo(int intProductId){
         
-        ArrayList<CdBean> itemList = null;
+        CdBean itemList = null;
         String strProductId = ""+intProductId;
         String[] values = new String[]{strProductId};
         ResultSet rs = objDb.getQueryResult("q2.2", values);
         SystemLogger.out("RS : " + rs);
-        itemList = iterateResultSet(rs);
+        itemList = iterateResultSetPI(rs);
         return itemList;
     }
 
@@ -93,5 +93,53 @@ public class CdDao {
             ex.printStackTrace();
         }
         return cdList;
+    }
+    
+    
+    public CdBean iterateResultSetPI(ResultSet rs) {
+        CdBean cdBean = new CdBean();
+        
+        try {
+            
+            String[] columnNames = CdTableKeys.getColumnKeys();
+            ResultSetMetaData md = rs.getMetaData();
+            while (rs.next()) {
+                
+                for (String col : columnNames) {
+                    try {
+                        if (col.equals(CdTableKeys.key_cd_id)) {
+                            cdBean.setCdId(
+                                    Integer.parseInt(rs.getString(CdTableKeys.key_cd_id)));
+                        } else if (col.equals(CdTableKeys.key_cd_title)) {
+                            cdBean.setCdTitle(
+                                    rs.getString(CdTableKeys.key_cd_title));
+                        } else if (col.equals(CdTableKeys.key_cd_price)) {
+                            cdBean.setCdPrice(
+                                    Double.parseDouble(rs.getString(CdTableKeys.key_cd_price)));
+                        } else if (col.equals(CdTableKeys.key_category_id)) {
+                            cdBean.setCategoryId(
+                                    Integer.parseInt(rs.getString(CdTableKeys.key_category_id)));
+                        } else if (col.equals(CdTableKeys.key_cd_image)) {
+                            cdBean.setCdImage(
+                                    rs.getString(CdTableKeys.key_cd_image));
+                        } else if (col.equals(CdTableKeys.key_cd_publisheddate)) {
+                            cdBean.setPublishDate(
+                                    rs.getString(CdTableKeys.key_cd_publisheddate));
+                        } else if (col.equals(CdTableKeys.key_cd_taxper)) {
+                            cdBean.setTaxPer(
+                                    Double.parseDouble(rs.getString(CdTableKeys.key_cd_taxper)));
+                        } else {
+                            System.out.println("Error in fetching Attribute");
+                        }
+                    } catch (Exception resultSetException) {
+                        resultSetException.printStackTrace();
+                    }
+                }
+                
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return cdBean;
     }
 }

@@ -23,6 +23,8 @@ public class UserBean {
     boolean isActive;
     String createdDate;
     String modifiedDate;
+    public String status = "";
+    public String errormessage = "";
     
     public UserBean() {
         
