@@ -33,7 +33,7 @@ public class AccountProcessingWS {
         
         responseObj =  dao.getUserInfo(userName, password);
         
-        if(responseObj==null) {
+        if(responseObj.getUserId()==0) {
             responseObj.status= "error";
             responseObj.errormessage = "No user data found!";
         } else {
