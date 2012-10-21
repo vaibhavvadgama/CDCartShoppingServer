@@ -20,6 +20,7 @@ import com.cdstoreserver.dbagent.dao.AddressDao;
 /**
  *
  * @author Utkarsh
+ * Desc:It's class which performs data access operations on ordermains and orderitemsmain tables 
  */
 public class OrderDao {
     
@@ -35,6 +36,12 @@ public class OrderDao {
         
     }
     
+    /*
+     * Param: list of cdbeans,adressbean
+     * Return: processed order bean
+     * Desc: function to create order from shopping card and address info
+     * 
+     */
     public ProcessedOrdersBean createOrder(ArrayList<CdBean> shoppingCartInfo,AddressBean shippingInfo){
         
         AddressDao dao = new AddressDao();
@@ -100,6 +107,12 @@ public class OrderDao {
         return returnOrder;
     }
     
+    /*
+     * Param: orderbean,boolean payment
+     * Return: ProcessedOrdersBean
+     * Desc: function to confirm order on provided paymentinfo (true or false)
+     * 
+     */
     public ProcessedOrdersBean confirmOrder(ProcessedOrdersBean purchaseOrder,boolean paymentInfo){
         
         ProcessedOrdersBean returnOrder = new ProcessedOrdersBean();

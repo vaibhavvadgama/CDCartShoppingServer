@@ -16,6 +16,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Utkarsh
+ * Desc:It's class which performs data access operations on usermains table 
  */
 public class UserDao {
     
@@ -27,9 +28,14 @@ public class UserDao {
         objProp = new DbAgentUtil();
     }
 
-    
+    /*
+     * Param: username,password
+     * Return: userbean
+     * Desc: function to get user's data from provided username(email) and password
+     * 
+     */
     public UserBean getUserInfo(String strUserName,String strPassword){        
-        
+      
         UserBean userData = null;        
         String[] values = new String[]{strUserName,strPassword};
         ResultSet rs = objDb.getQueryResult("q5.2", values);
@@ -38,21 +44,27 @@ public class UserDao {
         return userData;
     }
     
+    /*
+     * Param: userbean
+     * Return: user inserted id
+     * Desc: function to add user's information to usermains table
+     * 
+     */
     public UserBean addUser(UserBean user){
-        int insertId;
-        
+        int insertId;        
         UserBean returnUser = new UserBean();
-        String[] values = new String[]{user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword(),user.getCardType(),user.getCardNumber(),""+user.getCvv(),user.getExpDate()};
+        String[] values = new String[]{user.getFirstName(),user.getLastName(),user.getEmail(),user.getPassword()};
         insertId = objDb.executeSQL("q5.1",values);
-        if(insertId!=0){
-            returnUser.setUserId(insertId);          
-            
-        } else {
-            returnUser = null;
-        } 
+        returnUser.setUserId(insertId);      
         return returnUser;
     }
-
+    
+    /*
+     * Param: resultset
+     * Return: userbean
+     * Desc: function to iterate through various fields of usermains and provide user data
+     * 
+     */
     public UserBean iterateResultSet(ResultSet rs) {
         UserBean userBean = new UserBean();
         
@@ -82,16 +94,6 @@ public class UserDao {
                         } else if (col.equals(UserTableKeys.key_isactive)) {
                             userBean.setIsActive(
                                     Boolean.parseBoolean(rs.getString(UserTableKeys.key_isactive)));
-                        } else if (col.equals(UserTableKeys.key_user_cardtype)) {
-                            userBean.setCardType(
-                                    rs.getString(UserTableKeys.key_user_cardtype));
-                        } else if (col.equals(UserTableKeys.key_user_cardnumber)) {
-                            userBean.setCardNumber(rs.getString(UserTableKeys.key_user_cardnumber));
-                        } else if (col.equals(UserTableKeys.key_user_cardcvv)) {
-                            userBean.setCvv(
-                                    Integer.parseInt(rs.getString(UserTableKeys.key_user_cardcvv)));
-                        } else if (col.equals(UserTableKeys.key_user_cardexpdate)) {
-                            userBean.setExpDate(rs.getString(UserTableKeys.key_user_cardexpdate));
                         } else {
                             System.out.println("Error in fetching Attribute");
                         }

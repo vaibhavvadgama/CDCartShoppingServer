@@ -32,7 +32,7 @@ public class OrderProcessWS {
         OrderDao dao = new OrderDao();
         
         responseObj =  dao.createOrder(shoppingCartInfo, shippingInfo);
-        
+        //if order creation fails then set error to show on front end
         if(responseObj==null) {
             responseObj.status = "error";
             responseObj.errormessage = "No user data found!";
@@ -56,6 +56,7 @@ public class OrderProcessWS {
         
         responseObj =  dao.confirmOrder(purchaseOrder, paymentInfo);
         
+        //if confirming order fails then set error to show on front end
         if(responseObj==null) {
             responseObj.status = "error";
             responseObj.errormessage = "No user data found!";

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Utkarsh
+ * Desc:It's class which performs data access operations on cdmains table 
  */
 public class CdDao {
 
@@ -26,7 +27,13 @@ public class CdDao {
         objDb = new ShopDbAgent();
         objProp = new DbAgentUtil();
     }
-
+   
+    /*
+     * Param: category id
+     * Return: product list
+     * Desc: function to get cds(products) from provided category id
+     * 
+     */
     public ArrayList<CdBean> getProductList(int intCategoryId) {
         ArrayList<CdBean> itemList = null;
         String strCategoryId = ""+intCategoryId;
@@ -37,6 +44,12 @@ public class CdDao {
         return itemList;
     }
     
+    /*
+     * Param: cdid(productid)
+     * Return: Cdbean
+     * Desc: function to get partcular product's(cd's) information from cd id
+     * 
+     */
     public CdBean getProductInfo(int intProductId){
         
         CdBean itemList = null;
@@ -47,7 +60,13 @@ public class CdDao {
         itemList = iterateResultSetPI(rs);
         return itemList;
     }
-
+    
+    /*
+     * Param: resultset
+     * Return: arraylist of products(cds)
+     * Desc: function to iterate through various fields of cdmains and provide list of cds
+     * 
+     */
     public ArrayList<CdBean> iterateResultSet(ResultSet rs) {
         ArrayList<CdBean> cdList = new ArrayList<CdBean>();
         

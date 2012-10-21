@@ -15,6 +15,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Utkarsh
+ * Desc:It's class which performs data access operations on addressmains table 
  */
 public class AddressDao {
     
@@ -26,6 +27,12 @@ public class AddressDao {
         objProp = new DbAgentUtil();
     }
     
+    /*
+     * Param: userid
+     * Return: addresslist
+     * Desc: function to get user's addresses from provided user id
+     * 
+     */
     public ArrayList<AddressBean> getAddresses(int intUserId){        
         
         ArrayList<AddressBean> addressList = null;
@@ -37,13 +44,25 @@ public class AddressDao {
         return addressList;
     }
     
+    /*
+     * Param: addressbean
+     * Return: address inserted id
+     * Desc: function to add user's address to addressmains table
+     * 
+     */
     public int addAddress(AddressBean address){
         int insertId;        
         String[] values = new String[]{address.getAddressType(),""+address.getUserId(),address.getStreetNo(),address.getStreetName(),address.getCity(),address.getState(),address.getZip(),address.getPhone()};
         insertId = objDb.executeSQL("q6.1",values);        
         return insertId;
     }
-
+    
+    /*
+     * Param: resultset
+     * Return: arraylist of address
+     * Desc: function to iterate through various fields of addressmains and provide list of addresses
+     * 
+     */
     public ArrayList<AddressBean> iterateResultSet(ResultSet rs) {
         ArrayList<AddressBean> userList = new ArrayList<AddressBean>();
         

@@ -7,6 +7,7 @@ package com.cdstoreserver.dbagent.dao.keys;
 /**
  *
  * @author Vaibhav
+ * Desc:cdmains table rows/keys
  */
 public class CdTableKeys {
     

@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 /**
  *
  * @author Utkarsh
- * Class to retrieve database connection object and to read properties from properties file.
+ * Class to retrieve database connection object copied from provided code on course web-site for implementing connection pooling
  */
 public class ShopDbConnectionPool {
     

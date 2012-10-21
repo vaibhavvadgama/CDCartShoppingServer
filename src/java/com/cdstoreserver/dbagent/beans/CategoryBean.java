@@ -7,6 +7,7 @@ package com.cdstoreserver.dbagent.beans;
 /**
  *
  * @author Vaibhav
+ * Desc:Getters/setters for categorymains table Columns
  */
 public class CategoryBean {
     

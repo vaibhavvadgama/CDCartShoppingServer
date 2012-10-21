@@ -7,6 +7,7 @@ package com.cdstoreserver.dbagent.beans;
 /**
  *
  * @author Vaibhav
+ * Desc:Getters/setters for cdmains table Columns
  */
 public class CdBean {
 

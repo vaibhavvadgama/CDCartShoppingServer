@@ -32,7 +32,7 @@ public class ProductCatalogWS {
         
         responseObj.cd =  dao.getProductList(categoryId);
         
-        
+        //if products not found then set error to show on front end
         if(responseObj.cd.size() == 0) {
             responseObj.status = "error";
             responseObj.errormessage = "No product found!";
@@ -56,7 +56,7 @@ public class ProductCatalogWS {
         CdDao dao = new CdDao();
         
         responseObj=  dao.getProductInfo(productId);
-        
+        //if product information not found then set error to show on front end
         if(responseObj==null) {
             responseObj.status = "error";
             responseObj.errormessage = "No product data found!";
@@ -76,6 +76,7 @@ public class ProductCatalogWS {
         CategoryDao catDao = new CategoryDao();
         responseObject.category = catDao.getCategoryList();
         
+        //if categories not found then set error to show on front end
         if(responseObject.category.size() == 0) {
             responseObject.status = "error";
             responseObject.errormessage = "No category found!";

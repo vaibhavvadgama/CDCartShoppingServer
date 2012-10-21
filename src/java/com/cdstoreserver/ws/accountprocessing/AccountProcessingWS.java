@@ -32,7 +32,7 @@ public class AccountProcessingWS {
         UserDao dao = new UserDao();
         
         responseObj =  dao.getUserInfo(userName, password);
-        
+        //if user not found then set error to show on front end
         if(responseObj.getUserId()==0) {
             responseObj.status= "error";
             responseObj.errormessage = "No user data found!";
@@ -56,7 +56,7 @@ public class AccountProcessingWS {
         AddressDao dao = new AddressDao();
         
         responseObj.address =  dao.getAddresses(userId);
-        
+        //if addresses not found then set error to show on front end
         if(responseObj.address.size() == 0) {
             responseObj.status = "error";
             responseObj.errormessage = "No addresses found associated with specified user!";
@@ -97,7 +97,8 @@ public class AccountProcessingWS {
         UserBean responseObj = new UserBean();        
         UserDao dao = new UserDao();        
         responseObj=  dao.addUser(user);
-        if(responseObj==null){
+        //if user creation is unsuccessful then set error to show on front end
+        if(responseObj.getUserId()==0){
             responseObj.status = "error";
             responseObj.errormessage = "User already exists!";
         } else {

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Vaibhav
+ * Desc:It's class which performs data access operations on categorymains table 
  */
 public class CategoryDao {
     
@@ -27,6 +28,12 @@ public class CategoryDao {
         objProp = new DbAgentUtil();
     }
     
+    /*
+     * Param: none
+     * Return: categories list
+     * Desc: function to get all available music categories     * 
+     */
+    
     public ArrayList<CategoryBean> getCategoryList() {
         ArrayList<CategoryBean> itemList = null;
         
@@ -37,6 +44,12 @@ public class CategoryDao {
         return itemList;
     }
     
+    /*
+     * Param: resultset
+     * Return: arraylist of categories
+     * Desc: function to iterate through various fields of categorymains and provide list of categories
+     * 
+     */
     public ArrayList<CategoryBean> iterateResultSet(ResultSet rs) {
         ArrayList<CategoryBean> categoryList = new ArrayList<CategoryBean>();
         

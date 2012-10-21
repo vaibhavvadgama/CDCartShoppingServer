@@ -8,6 +8,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Utkarsh
+ * Desc:class for addresslist response
  */
 public class AddressList {
     public String status = "";

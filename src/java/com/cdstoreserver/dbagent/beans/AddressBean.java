@@ -7,6 +7,7 @@ package com.cdstoreserver.dbagent.beans;
 /**
  *
  * @author Vaibhav
+ * Desc:Getters/setters for addressmains table Columns
  */
 public class AddressBean {
     

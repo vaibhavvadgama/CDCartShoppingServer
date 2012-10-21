@@ -15,6 +15,7 @@ import java.util.ArrayList;
 /**
  *
  * @author Utkarsh
+ * It is actual database agent to operate on database
  */
 public class ShopDbAgent {
 
@@ -38,18 +39,26 @@ public class ShopDbAgent {
             connection = null;
         }
     }
-
+    /*
+     * Desc:starting the transaction and setting autocommit to false
+     */
     public void startTransaction() throws Exception {
         connection.setAutoCommit(false);
     }
-
+    
+    /*
+     * Desc:function to commit the transaction and closing the connection
+     */
     public void endTransaction() throws Exception {
         /* Commits the changes made in the database to the database. */
         connection.commit();
         /* Close the connection */
         connection.close();
     }
-
+    
+    /*
+     * Desc:function to roll back the transaction in case of error or exception
+     */
     public void rollBack() throws Exception {
         /* In case of an exception or error roll back the changes from database. 
          */
@@ -102,10 +111,9 @@ public class ShopDbAgent {
 
     /*
      * Param: string queryid , string array parameter
-     * Return: List of associative rows
+     * Return: result set
      * Desc: function returns converts resultset in to list of associative rows and returns it
-     * reference: http://stackoverflow.com/questions/7507121/efficient-way-to-handle-resultset-in-java
-     * 
+     *  
      */
     public ResultSet getQueryResult(String queryId, String[] parameters) {
         ResultSet rs = null;

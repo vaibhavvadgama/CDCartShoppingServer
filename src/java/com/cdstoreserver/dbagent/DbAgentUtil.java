@@ -13,6 +13,7 @@ import java.util.Set;
 /**
  *
  * @author Vaibhav
+ * this class to read properties from properties file
  */
 public class DbAgentUtil {
 
@@ -20,6 +21,11 @@ public class DbAgentUtil {
     
     public String queryPropertyFile = "";
 
+    /*
+     * Desc:It is a function to retrive value of property from db.properties files
+     * Param: property name
+     * Return: property value
+     */
     public String getProperty(String propName) {
         Properties prop = new Properties();
         InputStream inputStream = ShopDbConnectionPool.class.getClassLoader().getResourceAsStream("./db.properties");
@@ -32,7 +38,12 @@ public class DbAgentUtil {
         String propValue = prop.getProperty(propName);
         return propValue;
     }
-
+    
+    /*
+     * Desc:It is a function to retrive value of property from specified file
+     * Param: property file name,property name
+     * Return: property value
+     */
     public String getProperty(String perpertyFileName, String propName) {
         Properties prop = new Properties();
         InputStream inputStream = ShopDbConnectionPool.class.getClassLoader().getResourceAsStream("./" + perpertyFileName);
@@ -44,7 +55,11 @@ public class DbAgentUtil {
         String propValue = prop.getProperty(propName);
         return propValue;
     }
-    
+    /*
+     * Desc:It is a function to retrive values of all properties from specified file
+     * Param: property file name
+     * Return: keyvalue
+     */
     public String [] getAllProperties(String propertyFileName) {
         Properties prop = new Properties();
         InputStream inputStream = ShopDbConnectionPool.class.getClassLoader().getResourceAsStream("./" + propertyFileName);
@@ -63,7 +78,11 @@ public class DbAgentUtil {
         }
         return keyValues;
     }
-    
+    /*
+     * Desc:It is a function to retrive db query from dbquery properties file
+     * Param: query number
+     * Return: query string
+     */
     public String getQuery(String queryNumber) {
         Properties prop = new Properties();
         InputStream inputStream = ShopDbConnectionPool.class.getClassLoader().getResourceAsStream("./dbquery.properties");
