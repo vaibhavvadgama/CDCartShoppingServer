@@ -6,6 +6,7 @@ package com.cdstoreserver.dbagent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -26,15 +27,12 @@ public class ShopDbConnectionPool {
         Connection con = null;
         objProp = new DbAgentUtil();
         try {
-            /*Context initContext = new InitialContext();
-            Context envContext  = (Context)initContext.lookup("java:/comp/env");
-            DataSource dataSource = (DataSource)envContext.lookup(this.getProperty("context"));
-            //DataSource dataSource = (DataSource) context.lookup(this.getProperty("context"));*/
-            InitialContext ctx = new InitialContext();
-
-            DataSource dataSource = (DataSource) ctx.lookup("jdbc/ecommerce");
-
-            con = dataSource.getConnection();
+                       
+            InitialContext initialContext = new InitialContext();
+            Context context = (Context) initialContext.lookup(objProp.getProperty("context"));
+            //The JDBC Data source that we just created
+            DataSource ds = (DataSource) context.lookup(objProp.getProperty("contextLookup"));
+            con = ds.getConnection();
             System.out.println("Datasource registered in JNDI is in use.");
         } catch (NamingException e) {
             
