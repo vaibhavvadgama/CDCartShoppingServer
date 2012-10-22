@@ -19,7 +19,7 @@ public class ShopDbConnectionPool {
     
     DbAgentUtil objProp = null;
     /**
-     * Method getConnection. Used from connection pooling example provided on course web-site.
+     * Method getConnection. Reference:http://netbeans.dzone.com/connection-pooling-tomcat-nb
      *
      * @return Connection object
      */
