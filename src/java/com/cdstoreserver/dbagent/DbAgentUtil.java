@@ -19,6 +19,8 @@ public class DbAgentUtil {
 
     public static String commonProperties = "db.properties";
     
+    public static String serverPath = "http://localhost:8080/CDStoreClient/";
+    
     public String queryPropertyFile = "";
 
     /*

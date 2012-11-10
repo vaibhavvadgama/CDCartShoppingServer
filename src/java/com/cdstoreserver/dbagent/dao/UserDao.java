@@ -91,10 +91,7 @@ public class UserDao {
                         } else if (col.equals(UserTableKeys.key_createddate)) {
                             userBean.setCreatedDate(
                                     rs.getString(UserTableKeys.key_createddate));
-                        } else if (col.equals(UserTableKeys.key_isactive)) {
-                            userBean.setIsActive(
-                                    Boolean.parseBoolean(rs.getString(UserTableKeys.key_isactive)));
-                        } else {
+                        }  else {
                             System.out.println("Error in fetching Attribute");
                         }
                     } catch (Exception resultSetException) {

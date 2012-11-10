@@ -70,15 +70,9 @@ public class CategoryDao {
                         } else if (col.equals(CategoryTableKeys.key_category_desc)) {
                             categoryBean.setCategoryDesc(
                                     rs.getString(CategoryTableKeys.key_category_desc));
-                        } else if (col.equals(CategoryTableKeys.key_isactive)) {
-                            categoryBean.setIsActive(Boolean.parseBoolean(
-                                    rs.getString(CategoryTableKeys.key_isactive)));
                         } else if (col.equals(CategoryTableKeys.key_createddate)) {
                             categoryBean.setCreatedDate(
                                     rs.getString(CategoryTableKeys.key_createddate));
-                        } else if (col.equals(CategoryTableKeys.key_modifieddate)) {
-                            categoryBean.setModifiedDate(
-                                    rs.getString(CategoryTableKeys.key_modifieddate));
                         } else {
                             System.out.println("Error in fetching Attribute");
                         }

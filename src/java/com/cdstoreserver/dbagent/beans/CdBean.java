@@ -16,19 +16,21 @@ public class CdBean {
     double cdPrice;
     int categoryId;
     String cdImage;
-    String publishDate;
-    double taxPer;
-    boolean isActive;
-    String createdDate;
-    String modifiedDate;
-    public String status = "";
-    public String errormessage = "";
-    
+    String cdImagePath;
+    String publishDate;    
+    double taxPer;    
+    String createdDate;   
+    public String status;
+    public String errormessage;
+       
     public CdBean() {
         
     }
 
-    public CdBean(int cdId, String cdTitle, double cdPrice, int categoryId, String cdImage, String publishDate, double taxPer, boolean isActive, String createdDate, String modifiedDate) {
+   
+    
+
+    public CdBean(int cdId, String cdTitle, double cdPrice, int categoryId, String cdImage, String publishDate, double taxPer, String createdDate) {
         this.cdId = cdId;
         this.cdTitle = cdTitle;
         this.cdPrice = cdPrice;
@@ -36,9 +38,7 @@ public class CdBean {
         this.cdImage = cdImage;
         this.publishDate = publishDate;
         this.taxPer = taxPer;
-        this.isActive = isActive;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        this.createdDate = createdDate;        
     }
 
     public int getCdId() {
@@ -89,7 +89,7 @@ public class CdBean {
         this.publishDate = publishDate;
     }
     
-    public double getTaxPer() {
+   public double getTaxPer() {
         return taxPer;
     }
 
@@ -97,13 +97,7 @@ public class CdBean {
         this.taxPer = taxPer;
     }
 
-    public boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
-    }
+    
 
     public String getCreatedDate() {
         return createdDate;
@@ -113,12 +107,13 @@ public class CdBean {
         this.createdDate = createdDate;
     }
 
-    public String getModifiedDate() {
-        return modifiedDate;
+     public String getCdImagePath() {
+        return cdImagePath;
     }
 
-    public void setModifiedDate(String modifiedDate) {
-        this.modifiedDate = modifiedDate;
+    public void setCdImagePath(String cdImagePath) {
+        this.cdImagePath = cdImagePath;
     }
+    
     
 }

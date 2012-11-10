@@ -14,20 +14,17 @@ public class CategoryBean {
     int categoryId;
     String categoryName;
     String categoryDesc;
-    boolean isActive;
     String createdDate;
-    String modifiedDate;
+    
 
     public CategoryBean() {
     }
 
-    public CategoryBean(int categoryId, String categoryName, String categoryDesc, boolean isActive, String createdDate, String modifiedDate) {
+    public CategoryBean(int categoryId, String categoryName, String categoryDesc,String createdDate) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
         this.categoryDesc = categoryDesc;
-        this.isActive = isActive;
-        this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        this.createdDate = createdDate;        
     }
 
     public int getCategoryId() {
@@ -54,28 +51,12 @@ public class CategoryBean {
         this.categoryDesc = categoryDesc;
     }
 
-    public boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
-    }
-
     public String getCreatedDate() {
         return createdDate;
     }
 
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
-    }
-
-    public String getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(String modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
+    }    
     
 }

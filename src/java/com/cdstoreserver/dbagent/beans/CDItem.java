@@ -15,6 +15,7 @@ public class CDItem {
     public double cdPrice;
     public int categoryId;
     public String cdImage;
+    public String cdImagePath;
     public String publishDate;
     public boolean isActive;
 

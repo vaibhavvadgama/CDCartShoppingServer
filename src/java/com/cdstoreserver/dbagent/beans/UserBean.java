@@ -17,9 +17,7 @@ public class UserBean {
     String email;
     String password;
     String role;
-    boolean isActive;
     String createdDate;
-    String modifiedDate;
     public String status = "";
     public String errormessage = "";
     
@@ -27,16 +25,15 @@ public class UserBean {
         
     }
 
-    public UserBean(int userId, String firstName, String lastName, String email, String password, String role,String cardtype,String cardnumber,int cvv,String expdate,boolean isActive, String createdDate, String modifiedDate) {
+    public UserBean(int userId, String firstName, String lastName, String email, String password, String role,String cardtype,String cardnumber,int cvv,String expdate,String createdDate) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = role;
-        this.isActive = isActive;
+        this.role = role;        
         this.createdDate = createdDate;
-        this.modifiedDate = modifiedDate;
+        
     }
 
     public int getUserId() {
@@ -87,13 +84,7 @@ public class UserBean {
         this.role = role;
     }
     
-    public boolean isIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(boolean isActive) {
-        this.isActive = isActive;
-    }
+    
 
     public String getCreatedDate() {
         return createdDate;
@@ -103,12 +94,5 @@ public class UserBean {
         this.createdDate = createdDate;
     }
 
-    public String getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(String modifiedDate) {
-        this.modifiedDate = modifiedDate;
-    }
     
 }

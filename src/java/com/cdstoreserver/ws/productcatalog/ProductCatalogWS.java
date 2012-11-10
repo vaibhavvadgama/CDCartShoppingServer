@@ -5,8 +5,8 @@
 package com.cdstoreserver.ws.productcatalog;
 
 import com.cdstoreserver.dbagent.beans.CDList;
-import com.cdstoreserver.dbagent.beans.CdBean;
 import com.cdstoreserver.dbagent.beans.CategoryList;
+import com.cdstoreserver.dbagent.beans.CdBean;
 import com.cdstoreserver.dbagent.dao.CategoryDao;
 import com.cdstoreserver.dbagent.dao.CdDao;
 import javax.jws.WebMethod;
@@ -57,7 +57,7 @@ public class ProductCatalogWS {
         
         responseObj=  dao.getProductInfo(productId);
         //if product information not found then set error to show on front end
-        if(responseObj==null) {
+        if(responseObj.getCdId()==0) {
             responseObj.status = "error";
             responseObj.errormessage = "No product data found!";
         } else {

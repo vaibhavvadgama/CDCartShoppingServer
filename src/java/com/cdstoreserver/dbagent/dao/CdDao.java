@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Utkarsh
- * Desc:It's class which performs data access operations on cdmains table 
+ * @author Utkarsh Desc:It's class which performs data access operations on
+ * cdmains table
  */
 public class CdDao {
 
@@ -27,7 +27,7 @@ public class CdDao {
         objDb = new ShopDbAgent();
         objProp = new DbAgentUtil();
     }
-   
+
     /*
      * Param: category id
      * Return: product list
@@ -36,31 +36,31 @@ public class CdDao {
      */
     public ArrayList<CdBean> getProductList(int intCategoryId) {
         ArrayList<CdBean> itemList = null;
-        String strCategoryId = ""+intCategoryId;
+        String strCategoryId = "" + intCategoryId;
         String[] values = new String[]{strCategoryId};
         ResultSet rs = objDb.getQueryResult("q2.1", values);
         SystemLogger.out("RS : " + rs);
-        itemList = iterateResultSet(rs);        
+        itemList = iterateResultSet(rs);
         return itemList;
     }
-    
+
     /*
      * Param: cdid(productid)
      * Return: Cdbean
      * Desc: function to get partcular product's(cd's) information from cd id
      * 
      */
-    public CdBean getProductInfo(int intProductId){
-        
+    public CdBean getProductInfo(int intProductId) {
+
         CdBean itemList = null;
-        String strProductId = ""+intProductId;
+        String strProductId = "" + intProductId;
         String[] values = new String[]{strProductId};
         ResultSet rs = objDb.getQueryResult("q2.2", values);
         SystemLogger.out("RS : " + rs);
         itemList = iterateResultSetPI(rs);
         return itemList;
     }
-    
+
     /*
      * Param: resultset
      * Return: arraylist of products(cds)
@@ -69,9 +69,9 @@ public class CdDao {
      */
     public ArrayList<CdBean> iterateResultSet(ResultSet rs) {
         ArrayList<CdBean> cdList = new ArrayList<CdBean>();
-        
+
         try {
-            
+
             String[] columnNames = CdTableKeys.getColumnKeys();
             ResultSetMetaData md = rs.getMetaData();
             while (rs.next()) {
@@ -93,15 +93,16 @@ public class CdDao {
                         } else if (col.equals(CdTableKeys.key_cd_image)) {
                             cdBean.setCdImage(
                                     rs.getString(CdTableKeys.key_cd_image));
+                            cdBean.setCdImagePath(DbAgentUtil.serverPath);
                         } else if (col.equals(CdTableKeys.key_cd_publisheddate)) {
                             cdBean.setPublishDate(
                                     rs.getString(CdTableKeys.key_cd_publisheddate));
                         } else if (col.equals(CdTableKeys.key_cd_taxper)) {
-                            cdBean.setTaxPer(
-                                    Double.parseDouble(rs.getString(CdTableKeys.key_cd_taxper)));
+                            cdBean.setTaxPer(Double.parseDouble(rs.getString(CdTableKeys.key_cd_taxper)));
                         } else {
                             System.out.println("Error in fetching Attribute");
                         }
+
                     } catch (Exception resultSetException) {
                         resultSetException.printStackTrace();
                     }
@@ -113,17 +114,16 @@ public class CdDao {
         }
         return cdList;
     }
-    
-    
+
     public CdBean iterateResultSetPI(ResultSet rs) {
         CdBean cdBean = new CdBean();
-        
+
         try {
-            
+
             String[] columnNames = CdTableKeys.getColumnKeys();
             ResultSetMetaData md = rs.getMetaData();
             while (rs.next()) {
-                
+
                 for (String col : columnNames) {
                     try {
                         if (col.equals(CdTableKeys.key_cd_id)) {
@@ -141,12 +141,12 @@ public class CdDao {
                         } else if (col.equals(CdTableKeys.key_cd_image)) {
                             cdBean.setCdImage(
                                     rs.getString(CdTableKeys.key_cd_image));
+                            cdBean.setCdImagePath(DbAgentUtil.serverPath);
                         } else if (col.equals(CdTableKeys.key_cd_publisheddate)) {
                             cdBean.setPublishDate(
                                     rs.getString(CdTableKeys.key_cd_publisheddate));
                         } else if (col.equals(CdTableKeys.key_cd_taxper)) {
-                            cdBean.setTaxPer(
-                                    Double.parseDouble(rs.getString(CdTableKeys.key_cd_taxper)));
+                            cdBean.setTaxPer(Double.parseDouble(rs.getString(CdTableKeys.key_cd_taxper)));
                         } else {
                             System.out.println("Error in fetching Attribute");
                         }
@@ -154,7 +154,7 @@ public class CdDao {
                         resultSetException.printStackTrace();
                     }
                 }
-                
+
             }
         } catch (Exception ex) {
             ex.printStackTrace();
